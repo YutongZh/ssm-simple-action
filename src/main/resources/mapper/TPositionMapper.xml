@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yt.dao.TPositionMapper" >
+  <resultMap id="BaseResultMap" type="com.yt.domain.TPosition" >
+    <result column="position_id" property="positionId" jdbcType="INTEGER" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="years" property="years" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.yt.domain.TPosition" >
+    insert into t_position (position_id, comp_name, years, 
+      title)
+    values (#{positionId,jdbcType=INTEGER}, #{compName,jdbcType=VARCHAR}, #{years,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yt.domain.TPosition" >
+    insert into t_position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="compName != null" >
+        comp_name,
+      </if>
+      <if test="years != null" >
+        years,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="compName != null" >
+        #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        #{years,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
